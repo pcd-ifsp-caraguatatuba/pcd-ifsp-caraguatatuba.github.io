@@ -1,0 +1,64 @@
+#header{
+  width: 100%;
+  background-color: #e2e2e2;
+}
+
+#header_content{
+  align-content: center;
+  height: 20%;
+}
+
+#logo{
+  margin-top: 2%;
+  margin-left: 2%;
+  float: left;
+  width: 15%;
+}
+#titulo{
+  /* margin: auto auto auto auto; */
+  margin-top: 2%;
+  margin-left: 25%;
+  float: center;
+  font-family: "Bodoni";
+}
+
+#menu{
+  margin-top: auto;
+  width: 100%;
+}
+
+#page{
+  margin: 0 auto 0 auto;
+  margin-top: 1%;
+  width: 84%;
+  height: 110%;
+  background-color: white;
+}
+
+#page2{
+  margin: 0 auto 0 auto;
+  margin-top: 1%;
+  width: 97%;
+  height: 215%;
+  background-color: white;
+}
+
+#page_unique{
+  margin: 0 auto 0 auto;
+  margin-top: 1%;
+
+  width: 97%;
+  height: 65%;
+  background-color: white;
+}
+
+#text-footer{
+  word-break: break-all;
+  text-align:center;
+}
+
+#footer{
+  width: 100%;
+  height: auto;
+  background-color: #c8c8c8;
+}

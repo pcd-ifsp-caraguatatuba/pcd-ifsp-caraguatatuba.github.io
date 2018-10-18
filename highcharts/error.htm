@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Highcharts Example</title>
+
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+<script src="highcharts.js"></script>
+<script src="highcharts-more.js"></script>
+<script src="exporting.js"></script>
+
+<div id="container" style="height: 400px; margin: auto; min-width: 310px; max-width: 90%"></div>
+
+
+<script>
+	titulo='Temperatura vs Chuva'
+	dataY = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+	nome1="Chuva"
+	data1=[49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+	data2 = [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+
+</script>
+
+
+<script type="text/javascript">
+	Highcharts.chart('container', {
+	    chart: {
+	        zoomType: 'xy'
+	    },
+	    title: {
+	        text: titulo
+	    },
+	    xAxis: [{
+	        categories: dataY
+	    }],
+	    yAxis: [{ // Primary yAxis
+	        labels: {
+	            format: '{value} °C',
+	            style: {
+	                color: Highcharts.getOptions().colors[1]
+	            }
+	        },
+	        title: {
+	            text: 'Temperature',
+	            style: {
+	                color: Highcharts.getOptions().colors[1]
+	            }
+	        }
+	    }, { // Secondary yAxis
+	        title: {
+	            text: 'Rainfall',
+	            style: {
+	                color: Highcharts.getOptions().colors[0]
+	            }
+	        },
+	        labels: {
+	            format: '{value} mm',
+	            style: {
+	                color: Highcharts.getOptions().colors[0]
+	            }
+	        },
+	        opposite: true
+	    }],
+
+	    tooltip: {
+	        shared: true
+	    },
+
+	    series: [{
+	        name: nome1,
+	        type: 'column',
+	        yAxis: 1,
+	        data: data1,
+	        tooltip: {
+	            pointFormat: '<span style="font-weight: bold; color: {series.color}">{series.name}</span>: <b>{point.y:.1f} mm</b> '
+	        }
+	    },{
+	        name: 'Temperature',
+	        type: 'spline',
+	        data: data2,
+	        tooltip: {
+	            pointFormat: '<span style="font-weight: bold; color: {series.color}">{series.name}</span>: <b>{point.y:.1f}°C</b> '
+	        }
+	    }]
+	});
+</script>
+
+	</body>
+</html>

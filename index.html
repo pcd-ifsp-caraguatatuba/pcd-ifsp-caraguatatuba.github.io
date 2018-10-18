@@ -1,0 +1,213 @@
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="30;url=index.html">
+
+    <title> Plataforma de Coleta de Dados Climáticos</title>
+    <link rel="icon" href="img/if.png">
+
+    <link rel="stylesheet" type="text/css" href="css/css_ids.css">
+    <link rel="stylesheet" type="text/css" href="css/css_elements.css">
+    <link rel="stylesheet" type="text/css" href="css/css_classes.css">
+
+    <script src="js/Chart.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+  </head>
+  <script>
+    registros=20;
+  </script>
+
+  <script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10) {
+        dd = '0'+dd
+    }
+    if(mm<10) {
+        mm = '0'+mm
+    }
+    today =dd +"/"+ mm + '/' + yyyy;
+  </script>
+
+
+  <body>
+    <!-- <div id="header"> -->
+      <div id="menu">
+        <ul>
+          <li style="margin-left: 8%" ><a href="index.html">Home</a></li>
+          <li><a href="pluviometro.html">Índice Pluviométrico</a></li>
+          <li><a href="temperatura.html">Temperatura</a></li>
+          <li><a href="umidade.html">Umidade</a></li>
+          <li><a href="barometro.html">Pressão Atmosférica</a></li>
+          <!-- <li><a href="anemometro.html">Velocidade dos Ventos</a></li> -->
+          <li style="float:right"><a class="active" href="sobre.html">Sobre</a></li>
+        </ul>
+      </div>
+      <!-- <div id="header_content"> -->
+          <!-- <a href="index.html" >
+            <img src="img/ifsp.png" id="logo" alt="Logo do IFSP">
+          </a> -->
+        <!-- </br> -->
+        <!-- <h1 id="titulo"> Plataforma de Coleta de Dados Climáticos de Baixo Custo </h1> -->
+        <!-- <p style="text-align: right"><script>document.write("Hoje é "+today)</script></p>-->
+      <!-- </div> -->
+    <!-- </div> -->
+
+
+    <div id="page">
+      </br>
+      <div id="content">
+        <div class="chart">
+          <canvas onclick="" id="tabela_pluviometro" width="20" height="12"></canvas>
+        </div>
+
+        <div class="chart">
+          <canvas id="tabela_temperatura" width="20" height="12"></canvas>
+        </div>
+
+        <div class="chart">
+          <canvas id="tabela_umidade" width="20" height="12"></canvas>
+        </div>
+
+        <div class="chart">
+          <canvas id="tabela_barometro" width="20" height="12"></canvas>
+        </div>
+
+        <!-- <div class="chart">
+          <canvas id="tabela_anemometro" width="20" height="12"></canvas>
+        </div> -->
+
+        </div>
+      </div>
+
+    <div class="line_black">
+    </div>
+
+    <div id="footer">
+      </br>
+      <p id="text-footer">
+        Plataforma de Coleta de Dados Climáticos de baixo Custo
+        </br>
+        </br>
+        Aluno: Matheus Ladislau Ribeiro
+        </br>
+        Orientador: Ederson Rafael Wagner
+        </br>
+        Coorientador: Emerson Roberto de Oliveira
+        </br>
+        </br>
+      </p>
+  </body>
+</html>
+
+<script>
+  hora=[]
+  for (var i=0; i<datetime.length; i++){
+    hora.push(datetime[i].slice(11,16));
+  }
+</script>
+
+<script>
+  length=(hora.length)
+  qtdX=registros;
+  hora_data=[]
+  anemometro_data=[]
+  umidade_data=[]
+  temperatura_data=[]
+  barometro_data=[]
+  pluviometro_data=[]
+  for (var i=length-qtdX; i<length; i++){
+    hora_data.push(datetime[i].slice(11,16));
+    anemometro_data.push(anemometro[i])
+    umidade_data.push(umidade[i])
+    temperatura_data.push(temperatura[i])
+    barometro_data.push(barometro[i])
+    pluviometro_data.push(pluviometro[i])
+  }
+</script>
+
+<script>
+  nome="tabela_pluviometro"
+  hora=hora_data
+  label="Chuva (mm)"
+  border="#6CF"
+  data=pluviometro_data
+  title='Quantidade de Chuva (mm)'
+  max=(arrayMax(pluviometro_data))+1
+  min=0
+  initChart(nome,hora,label,border,data,title,max,min)
+</script>
+
+<!--
+umidade
+-->
+<script>
+  nome="tabela_umidade"
+  hora=hora_data
+  label="Umidade (%)"
+  border="#84d168"
+  data=umidade_data
+  title='Umidade relativa do ar (%)'
+  max=(arrayMax(umidade_data))+1
+  min=(arrayMin(umidade_data))-1
+  initChart(nome,hora,label,border,data,title,max,min)
+</script>
+
+<!--
+barometro
+-->
+<script>
+  nome="tabela_barometro"
+  hora=hora_data
+  label="Pressão Atmosférica (ATM)"
+  border="#f4bf81"
+  data=barometro_data
+  title='Pressão Atmosférica (ATM)'
+  max=(arrayMax(barometro_data))*1.05
+  min=(arrayMin(barometro_data))*0.99
+  initChart(nome,hora,label,border,data,title,max,min)
+</script>
+
+<!--
+temperatura
+-->
+<script>
+  nome="tabela_temperatura"
+  hora=hora_data
+  label="Temperatura (°C)"
+  border="#c97e7e"
+  data=temperatura_data
+  title='Temperatura em °C'
+  max=(arrayMax(temperatura_data))+1
+  min=(arrayMin(temperatura_data))-1
+  initChart(nome,hora,label,border,data,title,max,min)
+</script>
+
+<!--
+anemometro
+<script>
+  new Chart(document.getElementById("tabela_anemometro"), {
+  type: 'line',
+  data: {
+    labels: hora_data,
+    datasets: [{
+        label: "Velocidade dos Ventos (Km/h)",
+        type: "line",
+        borderColor: "brown",
+        data: anemometro_data,
+        fill: true
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: "Velocidade dos Ventos (Km/h)",
+    },
+    legend: { display: false}
+  }
+  });
+</script> -->

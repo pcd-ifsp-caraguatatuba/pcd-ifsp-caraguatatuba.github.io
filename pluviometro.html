@@ -1,0 +1,126 @@
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="30;url=pluviometro.html">
+
+    <title>Índice Pluviométrico - Plataforma de Coleta de Dados Climáticos</title>
+    <link rel="icon" href="img/if.png">
+
+    <link rel="stylesheet" type="text/css" href="css/css_ids.css">
+    <link rel="stylesheet" type="text/css" href="css/css_elements.css">
+    <link rel="stylesheet" type="text/css" href="css/css_classes.css">
+
+    <script src="js/Chart.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+  </head>
+
+  <script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10) {
+        dd = '0'+dd
+    }
+    if(mm<10) {
+        mm = '0'+mm
+    }
+    today =dd +"/"+ mm + '/' + yyyy;
+  </script>
+
+
+  <body>
+    <!-- <div id="header">
+      <div id="header_content">
+        <a href="index.html" >
+          <a href="index.html" >
+            <img src="img/ifsp.png" id="logo" alt="Logo do IFSP">
+          </a>
+        </a>
+        </br>
+        <h1 id="titulo"> Plataforma de Coleta de Dados Climáticos de Baixo Custo </h1>
+         <p style="text-align: right"><script>document.write("Hoje é "+today)</script></p> 
+      </div>
+    </div> -->
+
+    <div id="menu">
+      <ul>
+        <li style="margin-left: 8%" ><a href="index.html">Home</a></li>
+        <li><a href="pluviometro.html">Índice Pluviométrico</a></li>
+        <li><a href="temperatura.html">Temperatura</a></li>
+        <li><a href="umidade.html">Umidade</a></li>
+        <li><a href="barometro.html">Pressão Atmosférica</a></li>
+        <!-- <li><a href="anemometro.html">Velocidade dos Ventos</a></li> -->
+        <li style="float:right"><a class="active" href="sobre.html">Sobre</a></li>
+      </ul>
+    </div>
+
+
+    <div id="page_unique">
+      </br>
+      <div id="content">
+        <div class="chart_unique">
+          </br>
+          <canvas id="tabela" width="110" height="30"></canvas>
+        </div>
+        </div>
+      </div>
+
+    <div class="line_black">
+    </div>
+
+    <div id="footer">
+      </br>
+      <p id="text-footer">
+        Plataforma de Coleta de Dados Climáticos de baixo Custo
+        </br>
+        </br>
+        Aluno: Matheus Ladislau Ribeiro
+        </br>
+        Orientador: Ederson Rafael Wagner
+        </br>
+        Coorientador: Emerson Roberto de Oliveira
+        </br>
+        </br>
+      </p>
+  </body>
+</html>
+
+<script>
+  hora=[]
+  for (var i=0; i<datetime.length; i++){
+    hora.push(datetime[i].slice(11,16));
+  }
+</script>
+
+<script>
+  length=(hora.length)
+  qtdX=120;
+  hora_data=[]
+  anemometro_data=[]
+  umidade_data=[]
+  temperatura_data=[]
+  barometro_data=[]
+  pluviometro_data=[]
+  for (var i=length-qtdX; i<length; i++){
+    hora_data.push(datetime[i].slice(11,16));
+    anemometro_data.push(anemometro[i])
+    umidade_data.push(umidade[i])
+    temperatura_data.push(temperatura[i])
+    barometro_data.push(barometro[i])
+    pluviometro_data.push(pluviometro[i])
+  }
+</script>
+
+<script>
+  nome="tabela"
+  hora=hora_data
+  label="Chuva (mm)"
+  border="#6CF"
+  data=pluviometro_data
+  title='Quantidade de Chuva (mm)'
+  max=(arrayMax(pluviometro_data))+1
+  min=0
+  initChart(nome,hora,label,border,data,title,max,min)
+</script>
