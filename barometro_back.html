@@ -17,40 +17,17 @@
 
 <script>
   function iniciarTabela(){
-      nome="tabela"
-
-      label1=""
-      label2="Pressão Atmosférica (Pah)"
-
-      border1=""
-      border2="#f4bf81"
-
-      title='Pressão Atmosférica (Pah)'
-
-      data1=0
-      data2=barometro_data
-      max=(arrayMax(barometro_data))-10
-      min=(arrayMin(barometro_data))+10
-
-      initChart(nome,hora_data,label1,label2,border1,border2,data1,data2,title,max,min)
+    nome="tabela"
+    hora=hora_data
+    label="Pressão Atmosférica (Pah)"
+    border="#f4bf81"
+    data=barometro_data
+    title='Pressão Atmosférica (Pah)'
+    max=(arrayMax(barometro_data))*1.2
+    min=(arrayMin(barometro_data))*0.99
+    initChart(nome,hora,label,border,data,title,max,min)
   }
 </script>
-
-
-  <!-- <script>
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
-    if(dd<10) {
-        dd = '0'+dd
-    }
-    if(mm<10) {
-        mm = '0'+mm
-    }
-    today =dd +"/"+ mm + '/' + yyyy;
-  </script> -->
-
 
   <body>
       <div id="menu">
@@ -65,7 +42,8 @@
       </ul>
     </div>
 
-  </br>
+    <div id="page_unique">
+    </br>
     <div id="selecionar">
       <div id="inline">
       <pre style="display: inline">Horas: </pre>
@@ -96,20 +74,12 @@
     </div>
     </div>
 
-    </br>
-    <div id="page_unique">
-
-    <p id="text_title">
-    Pressão Atmosférica (Pah)
-    </p>
-
       <div id="content">
         <div class="chart_unique">
           </br>
           <canvas id="tabela" width="110" height="30"></canvas>
         </div>
         </div>
-
 
         <div id="content">
           <div class="chart_unique">
@@ -139,6 +109,7 @@
       </p>
   </body>
 </html>
+
 <script>
   function zerar(){
     hora=[]
@@ -147,7 +118,7 @@
     }
 
     length=(hora.length)
-    qtdX=73;
+    qtdX=120;
     if(length<qtdX)
       qtdX=length
     hora_data=[]

@@ -3,6 +3,14 @@
   background-color: #e2e2e2;
 }
 
+#selecionar{
+  margin-left: 4%;
+}
+
+#inline{
+  float:left;
+}
+
 #header_content{
   align-content: center;
   height: 20%;
@@ -39,7 +47,7 @@
   margin: 0 auto 0 auto;
   margin-top: 1%;
   width: 97%;
-  height: 215%;
+  height: 280%;
   background-color: white;
 }
 
@@ -48,8 +56,16 @@
   margin-top: 1%;
 
   width: 97%;
-  height: 65%;
+  height: 70%;
   background-color: white;
+}
+#text_title{
+  font-size: 130%;
+  text-align:center;
+}
+
+#acima_texto{
+  margin-bottom: 0%;
 }
 
 #text-footer{
