@@ -1,0 +1,161 @@
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="30;url=pluviometro.html">
+
+    <title>Índice Pluviométrico - Plataforma de Coleta de Dados Climáticos</title>
+    <link rel="icon" href="img/if.png">
+
+    <link rel="stylesheet" type="text/css" href="css/css_ids.css">
+    <link rel="stylesheet" type="text/css" href="css/css_elements.css">
+    <link rel="stylesheet" type="text/css" href="css/css_classes.css">
+
+    <script src="js/Chart.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+  </head>
+
+<script>
+  function iniciarTabela(){
+      nome="tabela"
+      // hora=hora_data
+      label1="Chuva (mm)"
+      label2="Acumulada"
+      border1="#6CF"
+      border2="black"
+      // data=pluviometro_data
+      title='Quantidade de Chuva (mm)'
+      data2=acumulada_data
+      max=Math.round((arrayMax(acumulada_data))*1.20)
+      min=0
+
+      initChart(nome,hora_data,label1,label2,border1,border2,pluviometro_data,data2,title,max,min)
+  }
+</script>
+
+
+  <!-- <script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10) {
+        dd = '0'+dd
+    }
+    if(mm<10) {
+        mm = '0'+mm
+    }
+    today =dd +"/"+ mm + '/' + yyyy;
+  </script> -->
+
+
+  <body>
+      <div id="menu">
+      <ul>
+        <li style="margin-left: 8%" ><a href="index.html">Home</a></li>
+        <li><a href="pluviometro.html">Índice Pluviométrico</a></li>
+        <li><a href="temperatura.html">Temperatura</a></li>
+        <li><a href="umidade.html">Umidade</a></li>
+        <li><a href="barometro.html">Pressão Atmosférica</a></li>
+        <!-- <li><a href="anemometro.html">Velocidade dos Ventos</a></li> -->
+        <li style="float:right"><a class="active" href="sobre.html">Sobre</a></li>
+      </ul>
+    </div>
+
+  </br>
+    <div id="selecionar">
+      <div id="inline">
+      <pre style="display: inline">Horas: </pre>
+      <select style="display: inline" id="selectHora" onchange="alterarPorHora(this.value)">
+        <option value="0"> - </option>
+        <option value="1">1</option>
+        <option value="12">12</option>
+        <option value="18">18</option>
+        <option value="24">24</option>
+        <option value="36">36</option>
+        <option value="48">48</option>
+        <option value="96">96</option>
+      </select>
+
+      <pre style="display: inline">Dias: </pre>
+      <select style="display: inline" id="selectDia" onchange="alterarPorDia(this.value)">
+        <option value="0"> - </option>
+        <option value="5">5</option>
+        <option value="7">7</option>
+        <option value="10">10</option>
+        <option value="14">14</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="25">25</option>
+        <option value="28">28</option>
+        <option value="30">30</option>
+      </select>
+    </div>
+    </div>
+
+    </br>
+    <div id="page_unique">
+
+    <p id="text_title">
+    Precipitação Acumulada em Milímetros (mm)
+    </p>
+
+      <div id="content">
+        <div class="chart_unique">
+          </br>
+          <canvas id="tabela" width="110" height="30"></canvas>
+        </div>
+        </div>
+
+
+        <div id="content">
+          <div class="chart_unique">
+            </br>
+            <canvas id="tabela2" width="110" height="30"></canvas>
+          </div>
+          </div>
+
+      </div>
+
+    <div class="line_black">
+    </div>
+
+    <div id="footer">
+      </br>
+      <p id="text-footer">
+        Plataforma de Coleta de Dados Climáticos de baixo Custo
+        </br>
+        </br>
+        Aluno: Matheus Ladislau Ribeiro
+        </br>
+        Orientador: Ederson Rafael Wagner
+        </br>
+        Coorientador: Emerson Roberto de Oliveira
+        </br>
+        </br>
+      </p>
+  </body>
+</html>
+<script>
+  function zerar(){
+    hora=[]
+    for (var i=0; i<datetime.length; i++){
+      hora.push(datetime[i].slice(11,16));
+    }
+
+    length=(hora.length)
+    qtdX=73;
+    if(length<qtdX)
+      qtdX=length
+    hora_data=[]
+    pluviometro_data=[]
+    temperatura_data=[]
+    umidade_data=[]
+    barometro_data=[]
+    getLastElements(datetime,qtdX);
+    iniciarTabela()
+  }
+</script>
+
+<script>zerar()</script>
+<script>iniciarTabela()</script>

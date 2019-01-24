@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Highcharts Example</title>
+
+  </head>
+
+  <body>
+    <script src="highcharts.js"></script>
+    <script src="highcharts-more.js"></script>
+    <script src="exporting.js"></script>
+    <script src="data.js"></script>
+
+
+    <div id="container" style="height: 500px; margin: auto; min-width: 310px; max-width: 1000px"></div>
+
+    <script>
+      hora=[]
+      for (var i=0; i<datetime.length; i++){
+        hora.push(datetime[i].slice(11,16));
+      }
+    </script>
+
+    <script>
+      length=(hora.length)
+      qtdX=60;
+      hora_data=[]
+      anemometro_data=[]
+      umidade_data=[]
+      temperatura_data=[]
+      barometro_data=[]
+      pluviometro_data=[]
+      for (var i=length-qtdX; i<length; i++){
+        hora_data.push(datetime[i].slice(11,16));
+        pluviometro_data.push(pluviometro[i])
+        temperatura_data.push(temperatura[i])
+      }
+    </script>
+
+    <script type="text/javascript">
+      // dado_a=[7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6];
+      // categorias=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      // rainfall=[49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4];
+      dado_a=temperatura_data;
+      categorias=hora_data;
+      rainfall=pluviometro_data;
+
+        Highcharts.chart('container', {
+        chart: {
+          zoomType: 'xy'
+        },
+        title: {
+          text: 'Temperatura & Índice Pluviométrico'
+        },
+        xAxis: [{
+          categories: categorias
+        }],
+            yAxis: [{ // Primary yAxis
+            labels: {
+              format: '{value} °C',
+              style: {
+                color: Highcharts.getOptions().colors[1]
+              }
+            },
+            title: {
+              text: 'Temperatura',
+              style: {
+                color: Highcharts.getOptions().colors[1]
+              }
+            }
+          }, { // Secondary yAxis
+          title: {
+            text: 'Índice Pluviométrico',
+            style: {
+            color: Highcharts.getOptions().colors[0]
+            }
+          },
+          labels: {
+            format: '{value} mm',
+            style: {
+            color: Highcharts.getOptions().colors[0]
+            }
+          },
+          opposite: true
+        }],
+
+        tooltip: {
+        shared: true
+        },
+
+        series: [{
+          name: 'Rainfall',
+          type: 'column',
+          yAxis: 1,
+          data: rainfall,
+          tooltip: {
+            pointFormat: '<span style="font-weight: bold; color: {series.color}">{series.name}</span>: <b>{point.y:.1f} mm</b> '
+          }
+        },
+        {
+          name: 'Temperatura',
+          type: 'spline',
+          data: dado_a,
+          tooltip: {
+            pointFormat: '<span style="font-weight: bold; color: {series.color}">{series.name}</span>: <b>{point.y:.1f}°C</b> '
+          }
+        }]
+      });
+    </script>
+  </body>
+</html>

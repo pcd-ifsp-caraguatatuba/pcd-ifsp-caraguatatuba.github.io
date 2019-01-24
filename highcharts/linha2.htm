@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Highcharts Example</title>
+
+		<style type="text/css">
+#container {
+	min-width: 400px;
+	max-width: 1000px;
+	height: 400px;
+	margin: 0 auto
+}
+		</style>
+	</head>
+	<body>
+<script src="highcharts.js"></script>
+<script src="modules/series-label.js"></script>
+<script src="modules/exporting.js"></script>
+<script src="modules/export-data.js"></script>
+
+<div id="container"></div>
+
+
+<script>
+dataX=[43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+
+</script>
+
+
+		<script type="text/javascript">
+
+Highcharts.chart('container', {
+
+    title: {
+        text: 'Solar Employment Growth by Sector, 2010-2016'
+    },
+
+    subtitle: {
+        text: 'Source: thesolarfoundation.com'
+    },
+
+    yAxis: {
+        title: {
+            text: 'Number of Employees'
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: true
+            },
+            pointStart: 2012
+        }
+    },
+
+    series: [
+			{
+        name: 'Installation',
+        data: dataX
+    },
+		// {
+    //     name: 'Project Development',
+    //     data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+    // },
+		],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+
+});
+		</script>
+	</body>
+</html>
