@@ -14,6 +14,25 @@
     <script src="js/data.js"></script>
     <script src="js/script.js"></script>
   </head>
+
+  <script>
+    function iniciarTabela(){
+        nome="tabela"
+        // hora=hora_data
+        label1="Chuva (mm)"
+        label2="Acumulada"
+        border1="#6CF"
+        border2="black"
+        // data=pluviometro_data
+        title='Quantidade de Chuva (mm)'
+        data2=acumulada_data
+        max=Math.round((arrayMax(acumulada_data))*1.20)
+        min=0
+
+        initChart(nome,hora_data,label1,label2,border1,border2,pluviometro_data,data2,title,max,min)
+    }
+  </script>
+
   <script>
     registros=73;
   </script>
@@ -177,6 +196,7 @@
 </script>
 
 <script>
+function iniciarPluviometro(){
   nome="tabela_pluviometro"
   // hora=hora_data
   label1="Chuva (mm)"
@@ -190,12 +210,14 @@
   min=0
 
   initChart(nome,hora_data,label1,label2,border1,border2,pluviometro_data,data2,title,max,min)
+}
 </script>
 
 <!--
 umidade
 -->
 <script>
+function iniciarUmidade(){
   nome="tabela_umidade"
 
   label1=""
@@ -212,12 +234,14 @@ umidade
   min=(arrayMin(barometro_data))+10
 
   initChart(nome,hora_data,label1,label2,border1,border2,data1,data2,title,max,min)
+}
 </script>
 
 <!--
 barometro
 -->
 <script>
+function iniciarBarometro(){
   nome="tabela_barometro"
 
   label1=""
@@ -234,12 +258,14 @@ barometro
   min=(arrayMin(barometro_data))+10
 
   initChart(nome,hora_data,label1,label2,border1,border2,data1,data2,title,max,min)
+}
 </script>
 
 <!--
 temperatura
 -->
 <script>
+function iniciarTemperatura(){
   nome="tabela_temperatura"
 
   label1=""
@@ -256,30 +282,39 @@ temperatura
   min=(arrayMin(barometro_data))+10
 
   initChart(nome,hora_data,label1,label2,border1,border2,data1,data2,title,max,min)
+}
 </script>
 
-<!--
-anemometro
 <script>
-  new Chart(document.getElementById("tabela_anemometro"), {
-  type: 'line',
-  data: {
-    labels: hora_data,
-    datasets: [{
-        label: "Velocidade dos Ventos (Km/h)",
-        type: "line",
-        borderColor: "brown",
-        data: anemometro_data,
-        fill: true
-      }
-    ]
-  },
-  options: {
-    title: {
-      display: true,
-      text: "Velocidade dos Ventos (Km/h)",
-    },
-    legend: { display: false}
+function iniciarTabela(){
+  iniciarPluviometro()
+  iniciarTemperatura()
+  iniciarUmidade()
+  iniciarBarometro()
+}
+
+iniciarTabela()
+</script>
+
+<script>
+  function zerar(){
+    hora=[]
+    for (var i=0; i<datetime.length; i++){
+      hora.push(datetime[i].slice(11,16));
+    }
+
+    length=(hora.length)
+    qtdX=73;
+    if(length<qtdX)
+      qtdX=length
+    hora_data=[]
+    pluviometro_data=[]
+    temperatura_data=[]
+    umidade_data=[]
+    barometro_data=[]
+    getLastElements(datetime,qtdX);
+    iniciarTabela()
   }
-  });
-</script> -->
+</script>
+
+<script>zerar()</script>

@@ -16,6 +16,7 @@
   </head>
 
 <script>
+
   function iniciarTabela(){
       nome="tabela"
 
@@ -29,8 +30,10 @@
 
       data1=0
       data2=temperatura_data
-      max=(arrayMax(barometro_data))-10
-      min=(arrayMin(barometro_data))+10
+      // max=(arrayMax(barometro_data))-10
+      // min=(arrayMin(barometro_data))+10
+      max=0
+      min=0
 
       initChart(nome,hora_data,label1,label2,border1,border2,data1,data2,title,max,min)
   }
@@ -99,7 +102,7 @@
         <div id="content">
           <div class="chart_unique">
             </br>
-            <canvas id="tabela2" width="110" height="30"></canvas>
+            <canvas id="tabela" width="110" height="30"></canvas>
           </div>
           </div>
 
